@@ -14,4 +14,10 @@ export async function POST(request) {
     await connectMongoDB();
     await Topic.create({ title, description });
     return NextResponse.json({ message: "Topic Created" }, { status: 201 });
-  }
+}
+
+export async function GET() {
+    await connectMongoDB();
+    const topics = await Topic.find();
+    return NextResponse.json(topics);
+}   
